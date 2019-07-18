@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const compression = require('compression');
 
+const port = process.env.PORT || 3000;
+
 require('dotenv').config();
 console.log(process.env);
 
@@ -68,6 +70,6 @@ const auth = require('./routes/authRoutes');
 
 app.use('/api/myapp', auth);
 
-app.listen(3000, () => {
-  console.log('Running on port 3000');
+app.listen(port, () => {
+  console.log('Our app is running on http://localhost:' + port);
 });
