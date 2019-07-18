@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "my-app be",
   "main": "index.js",
+  "engine": {
+    "node": "10.16.0",
+    "version": "6.9.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
