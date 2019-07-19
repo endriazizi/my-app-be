@@ -8,7 +8,9 @@ const compression = require('compression');
 const port = process.env.PORT || 3000;
 
 require('dotenv').config();
-console.log(process.env);
+// console.log(process.env);
+let mydb = process.env.MONGODB;
+console.log('ENV: ', process.env.MONGODB);
 
 const cors = require('cors');
 
@@ -56,13 +58,15 @@ app.use(cookieParser());
 //app.use(logger('dev'));
 
 
-
+// https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04
+// sudo systemctl status mongodb
 mongoose.Promise = global.Promise;
 mongoose.connect(
   dbConfig.url, {
     useNewUrlParser: true
   }
-);
+).then(() => console.log('Connected to MongoDB...', mydb))
+  .catch(err => console.error('Could not connect to MongoDB...', err));
 
 
 
@@ -73,3 +77,4 @@ app.use('/api/myapp', auth);
 app.listen(port, () => {
   console.log('Our app is running on http://localhost:' + port);
 });
+// app.listen(port, () => console.log(`Listening on port ${port}...`));
